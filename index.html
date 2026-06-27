@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Handbooks · tayakorn221 — คู่มือฉบับเข้าใจถึงแก่น</title>
+<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain · single-file HTML">
+<style>
+  :root{
+    --bg:#0d1117; --bg2:#161b22; --bg3:#1c2430;
+    --line:#283040; --line2:#3a4556;
+    --fg:#e6edf3; --fg2:#9aa7b8; --fg3:#6b7787;
+    --accent:#7c9eff; --accent2:#5fd3b0;
+    --radius:14px;
+    --font:"Segoe UI","IBM Plex Sans Thai","Noto Sans Thai",-apple-system,system-ui,"Sarabun",sans-serif;
+    --mono:"Cascadia Code","JetBrains Mono","Consolas",ui-monospace,monospace;
+  }
+  body.light{
+    --bg:#f7f8fa; --bg2:#ffffff; --bg3:#eef1f5;
+    --line:#e3e7ee; --line2:#cdd5e0;
+    --fg:#16202e; --fg2:#4a5568; --fg3:#7d8a9c;
+    --accent:#3b5bdb; --accent2:#0d9488;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--font);
+    line-height:1.7; -webkit-font-smoothing:antialiased; min-height:100vh}
+  a{color:var(--accent); text-decoration:none}
+  .wrap{max-width:920px; margin:0 auto; padding:72px 24px 90px}
+
+  header{text-align:center; margin-bottom:48px}
+  .badge{display:inline-block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--accent2); border:1px solid var(--line2); padding:4px 13px; border-radius:999px; margin-bottom:20px}
+  h1{font-size:2.5rem; margin:0 0 12px; letter-spacing:-.5px}
+  .sub{color:var(--fg2); font-size:1.1rem; max-width:560px; margin:0 auto}
+
+  .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+  @media (max-width:680px){ .grid{grid-template-columns:1fr} h1{font-size:2rem} }
+
+  .card{background:var(--bg2); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px 18px; display:flex; flex-direction:column; transition:transform .15s,border-color .15s}
+  .card:hover{transform:translateY(-3px); border-color:var(--accent)}
+  .card .top{display:flex; align-items:center; gap:12px; margin-bottom:10px}
+  .card .ico{width:42px; height:42px; flex:0 0 42px; border-radius:11px; background:var(--bg3);
+    display:grid; place-items:center; font-size:1.3rem}
+  .card h2{font-size:1.18rem; margin:0; letter-spacing:-.2px}
+  .card .tag{font-family:var(--mono); font-size:.72rem; color:var(--fg3)}
+  .card p{color:var(--fg2); font-size:.92rem; margin:4px 0 16px; flex:1 1 auto}
+  .actions{display:flex; gap:10px; flex-wrap:wrap}
+  .btn{font-size:.85rem; padding:7px 15px; border-radius:9px; border:1px solid var(--line2);
+    color:var(--fg); background:var(--bg3)}
+  .btn.primary{background:var(--accent); color:#06101f; border-color:var(--accent); font-weight:600}
+  .btn:hover{border-color:var(--accent)}
+  .btn.primary:hover{filter:brightness(1.08)}
+
+  footer{text-align:center; margin-top:52px; color:var(--fg3); font-size:.85rem}
+  footer a{color:var(--fg2)}
+  footer .mono{font-family:var(--mono); color:var(--line2); margin-top:6px}
+
+  .themebtn{position:fixed; top:16px; right:18px; width:40px; height:40px; border-radius:50%;
+    background:var(--bg2); color:var(--fg); border:1px solid var(--line2); cursor:pointer;
+    font-size:1rem; display:grid; place-items:center; box-shadow:0 2px 10px #0004}
+  .themebtn:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+<button class="themebtn" id="themebtn" aria-label="สลับธีม" title="สลับธีม">☀️</button>
+
+<div class="wrap">
+  <header>
+    <span class="badge">Handbooks · ภาษาไทย</span>
+    <h1>คู่มือฉบับเข้าใจถึงแก่น</h1>
+    <p class="sub">รวมคู่มือเทคนิคที่เขียนให้กลับมาเปิดดูได้ — single source of truth, HTML ไฟล์เดียวจบ ไม่มี dependency</p>
+  </header>
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="top">
+        <div class="ico">🌿</div>
+        <div>
+          <h2>Git Handbook</h2>
+          <div class="tag">git · 0 → Hero</div>
+        </div>
+      </div>
+      <p>เข้าใจ Git ถึงแก่น เน้นกลไกภายในและ mental model ไม่ใช่ท่องคำสั่ง พร้อมไดอะแกรม</p>
+      <div class="actions">
+        <a class="btn primary" href="https://tayakorn221.github.io/git-handbook/" target="_blank" rel="noopener">อ่านออนไลน์</a>
+        <a class="btn" href="https://github.com/tayakorn221/git-handbook" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="top">
+        <div class="ico">🏗️</div>
+        <div>
+          <h2>System Design</h2>
+          <div class="tag">8 บท · infra</div>
+        </div>
+      </div>
+      <p>APIs, Databases, Caching, Load Balancing, Auth และ Security จาก Single Server สู่ production scale</p>
+      <div class="actions">
+        <a class="btn primary" href="https://tayakorn221.github.io/system-design-handbook/" target="_blank" rel="noopener">อ่านออนไลน์</a>
+        <a class="btn" href="https://github.com/tayakorn221/system-design-handbook" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="top">
+        <div class="ico">🖥️</div>
+        <div>
+          <h2>tmux · WSL2</h2>
+          <div class="tag">reference</div>
+        </div>
+      </div>
+      <p>คู่มืออ้างอิงส่วนตัวสำหรับ tmux บน WSL2 — single source of truth ที่ออกแบบให้กลับมาเปิดดูได้</p>
+      <div class="actions">
+        <a class="btn primary" href="https://github.com/tayakorn221/tmux-wsl2-handbook" target="_blank" rel="noopener">เปิด repo</a>
+        <a class="btn" href="https://github.com/tayakorn221/tmux-wsl2-handbook/blob/main/tmux-wsl2-handbook.md" target="_blank" rel="noopener">อ่าน .md</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="top">
+        <div class="ico">🧠</div>
+        <div>
+          <h2>AI Brain</h2>
+          <div class="tag">second brain</div>
+        </div>
+      </div>
+      <p>สร้างสมองที่สองที่ AI อ่าน จดจำตัวตน เชื่อมโยงข้อมูลเอง และพัฒนาตัวเองทุกคืน — 10 บท</p>
+      <div class="actions">
+        <a class="btn primary" href="https://tayakorn221.github.io/ai-brain-handbook/" target="_blank" rel="noopener">อ่านออนไลน์</a>
+        <a class="btn" href="https://github.com/tayakorn221/ai-brain-handbook" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </article>
+
+  </div>
+
+  <footer>
+    <div>เขียนโดย <a href="https://github.com/tayakorn221" target="_blank" rel="noopener">@tayakorn221</a> · คู่มือภาษาไทยฉบับเข้าใจถึงแก่น</div>
+    <div class="mono">Single HTML · no dependency · Last updated: 2026-06-27</div>
+  </footer>
+</div>
+
+<script>
+  var tb=document.getElementById('themebtn');
+  function setTheme(t){
+    document.body.classList.toggle('light', t==='light');
+    tb.textContent = t==='light' ? '🌙' : '☀️';
+    try{ localStorage.setItem('hub-theme', t); }catch(e){}
+  }
+  tb.addEventListener('click', function(){
+    setTheme(document.body.classList.contains('light') ? 'dark' : 'light');
+  });
+  try{ var s=localStorage.getItem('hub-theme'); if(s) setTheme(s); }catch(e){}
+</script>
+</body>
+</html>
