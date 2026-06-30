@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Handbooks · tayakorn221 — คู่มือฉบับเข้าใจถึงแก่น</title>
-<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain, JIRA · single-file HTML">
+<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain, JIRA, Prompt · single-file HTML">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -151,16 +151,16 @@ a{color:inherit;text-decoration:none}
       <p class="stand fade d4">ไม่ใช่คู่มือที่ท่องจำแล้วลืม — แต่เขียนให้<b>เข้าใจกลไกข้างใน</b> แล้วกลับมาเปิดดูได้ตลอด รวมไว้ที่เดียว เปิดอ่านจบในไฟล์เดียว</p>
     </div>
     <div class="specs fade d4">
-      <div class="sp"><span class="k">Collection</span><span class="v"><span class="red">05</span> เล่ม</span></div>
+      <div class="sp"><span class="k">Collection</span><span class="v"><span class="red">06</span> เล่ม</span></div>
       <div class="sp"><span class="k">Language</span><span class="v">ภาษาไทย</span></div>
       <div class="sp"><span class="k">Format</span><span class="v">Single-file HTML</span></div>
-      <div class="sp"><span class="k">Updated</span><span class="v">2026.06.28</span></div>
+      <div class="sp"><span class="k">Updated</span><span class="v">2026.06.30</span></div>
     </div>
   </section>
 
   <div class="cohead">
     <h2>สารบัญ <span class="en">Contents</span></h2>
-    <span class="ct">05</span>
+    <span class="ct">06</span>
   </div>
 
   <main id="list"></main>
@@ -190,6 +190,9 @@ const BOOKS=[
   {name:'JIRA', tag:'15 บท · Scrum',
    desc:'เข้าใจ JIRA ถึงแก่น เน้น Scrum บน Jira Cloud — issue, workflow, board, sprint, JQL, schemes, automation',
    online:'https://tayakorn221.github.io/jira-handbook/', gh:'https://github.com/tayakorn221/jira-handbook'},
+  {name:'Prompt ที่ดี', tag:'7 หัวข้อ · เริ่มต้น',
+   desc:'กายวิภาคของ prompt ที่ดี สำหรับคนวัยทำงานที่เพิ่งเริ่มใช้ AI — รู้จัก 6 ส่วนของ prompt พร้อมตัวอย่างงานออฟฟิศจริง',
+   online:'https://tayakorn221.github.io/prompt-handbook/', gh:'https://github.com/tayakorn221/prompt-handbook'},
 ];
 const list=document.getElementById('list');
 BOOKS.forEach((b,i)=>{

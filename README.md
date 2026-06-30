@@ -16,6 +16,8 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 | [system-design-handbook](https://github.com/tayakorn221/system-design-handbook) | APIs, DB, Caching, LB, Auth | [↗](https://tayakorn221.github.io/system-design-handbook/) |
 | [tmux-wsl2-handbook](https://github.com/tayakorn221/tmux-wsl2-handbook) | tmux บน WSL2 (reference) | — (markdown) |
 | [ai-brain-handbook](https://github.com/tayakorn221/ai-brain-handbook) | สร้างสมองที่สองด้วย AI | [↗](https://tayakorn221.github.io/ai-brain-handbook/) |
+| [jira-handbook](https://github.com/tayakorn221/jira-handbook) | JIRA · Scrum บน Jira Cloud | [↗](https://tayakorn221.github.io/jira-handbook/) |
+| [prompt-handbook](https://github.com/tayakorn221/prompt-handbook) | กายวิภาคของ prompt ที่ดี (เริ่มต้นใช้ AI) | [↗](https://tayakorn221.github.io/prompt-handbook/) |
 
 ## ไฟล์
 
@@ -32,4 +34,4 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 
 ---
 
-Last updated: 2026-06-27
+Last updated: 2026-06-30
