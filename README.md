@@ -18,6 +18,7 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 | [ai-brain-handbook](https://github.com/tayakorn221/ai-brain-handbook) | สร้างสมองที่สองด้วย AI | [↗](https://tayakorn221.github.io/ai-brain-handbook/) |
 | [jira-handbook](https://github.com/tayakorn221/jira-handbook) | JIRA · Scrum บน Jira Cloud | [↗](https://tayakorn221.github.io/jira-handbook/) |
 | [prompt-handbook](https://github.com/tayakorn221/prompt-handbook) | กายวิภาคของ prompt ที่ดี (เริ่มต้นใช้ AI) | [↗](https://tayakorn221.github.io/prompt-handbook/) |
+| [prompt-engineering-handbook](https://github.com/tayakorn221/prompt-engineering-handbook) | Prompt 0 → Hero — เขียน prompt ระดับโปร | [↗](https://tayakorn221.github.io/prompt-engineering-handbook/) |
 
 ## ไฟล์
 
