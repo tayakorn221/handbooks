@@ -19,6 +19,7 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 | [jira-handbook](https://github.com/tayakorn221/jira-handbook) | JIRA · Scrum บน Jira Cloud | [↗](https://tayakorn221.github.io/jira-handbook/) |
 | [prompt-handbook](https://github.com/tayakorn221/prompt-handbook) | กายวิภาคของ prompt ที่ดี (เริ่มต้นใช้ AI) | [↗](https://tayakorn221.github.io/prompt-handbook/) |
 | [prompt-engineering-handbook](https://github.com/tayakorn221/prompt-engineering-handbook) | Prompt 0 → Hero — เขียน prompt ระดับโปร | [↗](https://tayakorn221.github.io/prompt-engineering-handbook/) |
+| [harness-engineering-handbook](https://github.com/tayakorn221/harness-engineering-handbook) | Harness Engineering — ออกแบบระบบรอบ AI agent | [↗](https://tayakorn221.github.io/harness-engineering-handbook/) |
 
 ## ไฟล์
 
@@ -35,4 +36,4 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 
 ---
 
-Last updated: 2026-06-30
+Last updated: 2026-07-02
