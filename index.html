@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Handbooks · tayakorn221 — คู่มือฉบับเข้าใจถึงแก่น</title>
-<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain, JIRA, Prompt, Prompt 0 → Hero, Harness Engineering · single-file HTML">
+<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain, JIRA, Prompt, Prompt 0 → Hero, Harness Engineering, Cowork Setup · single-file HTML">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -151,16 +151,16 @@ a{color:inherit;text-decoration:none}
       <p class="stand fade d4">ไม่ใช่คู่มือที่ท่องจำแล้วลืม — แต่เขียนให้<b>เข้าใจกลไกข้างใน</b> แล้วกลับมาเปิดดูได้ตลอด รวมไว้ที่เดียว เปิดอ่านจบในไฟล์เดียว</p>
     </div>
     <div class="specs fade d4">
-      <div class="sp"><span class="k">Collection</span><span class="v"><span class="red">08</span> เล่ม</span></div>
+      <div class="sp"><span class="k">Collection</span><span class="v"><span class="red">09</span> เล่ม</span></div>
       <div class="sp"><span class="k">Language</span><span class="v">ภาษาไทย</span></div>
       <div class="sp"><span class="k">Format</span><span class="v">Single-file HTML</span></div>
-      <div class="sp"><span class="k">Updated</span><span class="v">2026.07.15</span></div>
+      <div class="sp"><span class="k">Updated</span><span class="v">2026.07.30</span></div>
     </div>
   </section>
 
   <div class="cohead">
     <h2>สารบัญ <span class="en">Contents</span></h2>
-    <span class="ct">08</span>
+    <span class="ct">09</span>
   </div>
 
   <main id="list"></main>
@@ -199,6 +199,9 @@ const BOOKS=[
   {name:'Harness Engineering', tag:'14 บท · ออกแบบระบบ',
    desc:'ศาสตร์ของการออกแบบระบบรอบ AI agent — agent loop, context, tools, feedback loops, guardrails, observability, evals จนถึงผ่า Claude Code',
    online:'https://tayakorn221.github.io/harness-engineering-handbook/', gh:'https://github.com/tayakorn221/harness-engineering-handbook'},
+  {name:'Cowork Setup', tag:'10 บท · Windows',
+   desc:'เตรียมเครื่อง Windows ให้ Claude Cowork ใช้งานได้ก่อนเข้าคลาส — virtualization, สคริปต์ตรวจเครื่อง, TA triage sheet 12 อาการ และแผนสำรองเมื่อเครื่องเปิด VM ไม่ได้',
+   online:'https://tayakorn221.github.io/cowork-setup-handbook/', gh:'https://github.com/tayakorn221/cowork-setup-handbook'},
 ];
 const list=document.getElementById('list');
 BOOKS.forEach((b,i)=>{
