@@ -21,6 +21,7 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 | [prompt-engineering-handbook](https://github.com/tayakorn221/prompt-engineering-handbook) | Prompt 0 → Hero — เขียน prompt ระดับโปร | [↗](https://tayakorn221.github.io/prompt-engineering-handbook/) |
 | [harness-engineering-handbook](https://github.com/tayakorn221/harness-engineering-handbook) | Harness Engineering — ออกแบบระบบรอบ AI agent | [↗](https://tayakorn221.github.io/harness-engineering-handbook/) |
 | [cowork-setup-handbook](https://github.com/tayakorn221/cowork-setup-handbook) | เตรียมเครื่อง Windows ให้ Claude Cowork ใช้ได้ก่อนเข้าคลาส | [↗](https://tayakorn221.github.io/cowork-setup-handbook/) |
+| [codex-imagegen-guide](https://github.com/tayakorn221/codex-imagegen-guide) | Codex ImageGen — กำกับภาพด้วย Codex | [↗](https://tayakorn221.github.io/codex-imagegen-guide/) |
 
 ## ไฟล์
 
@@ -37,4 +38,4 @@ handbook แต่ละเล่มแยก repo กัน — หน้าน
 
 ---
 
-Last updated: 2026-07-30
+Last updated: 2026-08-13
