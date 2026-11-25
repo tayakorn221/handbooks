@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Handbooks · tayakorn221 — คู่มือฉบับเข้าใจถึงแก่น</title>
-<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain, JIRA, Prompt, Prompt 0 → Hero, Harness Engineering, Cowork Setup, Codex ImageGen · single-file HTML">
+<meta name="description" content="รวมคู่มือ (handbook) ภาษาไทยฉบับเข้าใจถึงแก่น — Git, System Design, tmux/WSL2, AI Brain, JIRA, Prompt, Prompt 0 → Hero, Harness Engineering, Cowork Setup, Codex ImageGen, HTML Techniques · single-file HTML">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -151,16 +151,16 @@ a{color:inherit;text-decoration:none}
       <p class="stand fade d4">ไม่ใช่คู่มือที่ท่องจำแล้วลืม — แต่เขียนให้<b>เข้าใจกลไกข้างใน</b> แล้วกลับมาเปิดดูได้ตลอด รวมไว้ที่เดียว เปิดอ่านจบในไฟล์เดียว</p>
     </div>
     <div class="specs fade d4">
-      <div class="sp"><span class="k">Collection</span><span class="v"><span class="red">10</span> เล่ม</span></div>
+      <div class="sp"><span class="k">Collection</span><span class="v"><span class="red">11</span> เล่ม</span></div>
       <div class="sp"><span class="k">Language</span><span class="v">ภาษาไทย</span></div>
       <div class="sp"><span class="k">Format</span><span class="v">Single-file HTML</span></div>
-      <div class="sp"><span class="k">Updated</span><span class="v">2026.08.13</span></div>
+      <div class="sp"><span class="k">Updated</span><span class="v">2026.11.25</span></div>
     </div>
   </section>
 
   <div class="cohead">
     <h2>สารบัญ <span class="en">Contents</span></h2>
-    <span class="ct">10</span>
+    <span class="ct">11</span>
   </div>
 
   <main id="list"></main>
@@ -205,6 +205,9 @@ const BOOKS=[
   {name:'Codex ImageGen', tag:'12 บท · กำกับภาพ',
    desc:'สั่งภาพด้วย Codex ให้ได้ดั่งใจ — เข้าใจกลไกว่าทำไมภาพไม่ตรงใจ แล้วคุมด้วย brief, use case, invariant, iteration และ quality gate',
    online:'https://tayakorn221.github.io/codex-imagegen-guide/', gh:'https://github.com/tayakorn221/codex-imagegen-guide'},
+  {name:'HTML Techniques', tag:'6 หัวข้อ · HTML/CSS',
+   desc:'เขียน HTML ให้สื่อความหมายก่อน จัด CSS ให้เป็นระบบ ปล่อยให้เลย์เอาต์ไหลตามเนื้อหา และวางแผนสารบัญกับโหมดพิมพ์ไว้ตั้งแต่แรก',
+   online:'html-techniques/', gh:'https://github.com/tayakorn221/handbooks/tree/main/html-techniques'},
 ];
 const list=document.getElementById('list');
 BOOKS.forEach((b,i)=>{

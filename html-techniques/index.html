@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เทคนิค HTML และ CSS · Handbooks</title>
+<meta name="description" content="เขียน HTML ให้สื่อความหมายก่อน จัด CSS ให้เป็นระบบ ปล่อยให้เลย์เอาต์ไหลตามเนื้อหา และวางแผนสารบัญกับโหมดพิมพ์ไว้ตั้งแต่แรก">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f2eee4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/baijamjuree/v13/LDIqapSCOBt_aeQQ7ftydoa05efegJo0yyg.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/baijamjuree/v13/LDIqapSCOBt_aeQQ7ftydoa05efelJo0.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mX4Dan29.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/anuphan/v6/2sDeZGxYgY7LkLT0mWoDag.woff2" as="font" type="font/woff2" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;600&family=Bai+Jamjuree:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@layer global, composition, utility, block, exception;
+
+@layer global {
+  :root {
+    color-scheme: light;
+    --paper: #f2eee4;
+    --paper-d: #e7e0d0;
+    --ink: #181611;
+    --ink-2: #3c382f;
+    --ink-soft: #5c564b;
+    --red: #d2381c;
+    --red-d: #9d2a14;
+    --rule: #cdc4b1;
+    --rule-d: #181611;
+    --disp: "Bai Jamjuree", "Noto Sans Thai", sans-serif;
+    --body: "Anuphan", "Noto Sans Thai", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --e: cubic-bezier(0.16, 1, 0.3, 1);
+    --pad: clamp(20px, 5vw, 80px);
+    --header-offset: 5rem;
+    --flow-space: 1em;
+    --step-body: clamp(1.05rem, 0.98rem + 0.28vw, 1.2rem);
+    --step-h2: clamp(1.45rem, 1.15rem + 1.15vw, 2.05rem);
+    --step-h1: clamp(2.55rem, 1.35rem + 4.4vw, 5.15rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --paper: #16130f;
+      --paper-d: #261f18;
+      --ink: #f6f1e8;
+      --ink-2: #e4dacb;
+      --ink-soft: #cbbda8;
+      --red: #ff6d4d;
+      --red-d: #ffb197;
+      --rule: #433b32;
+      --rule-d: #f6f1e8;
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  * { margin: 0; padding: 0; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: var(--header-offset);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: var(--step-body);
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--red); color: var(--paper); }
+  :focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+  }
+  img, svg { max-width: 100%; }
+}
+
+@layer composition {
+  .wrap {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: var(--pad);
+  }
+  .flow > * + * { margin-top: var(--flow-space, 1em); }
+  .shell {
+    container-type: inline-size;
+    container-name: page;
+  }
+  .with-sidebar {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 3.25rem);
+    align-items: start;
+  }
+  @container page (min-width: 52rem) {
+    .with-sidebar {
+      grid-template-columns: minmax(13.5rem, 17.5rem) minmax(0, 1fr);
+    }
+  }
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 1.25rem;
+    row-gap: 0.4rem;
+  }
+}
+
+@layer utility {
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link:focus {
+    position: fixed;
+    z-index: 90;
+    inset-block-start: 0;
+    inset-inline: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    clip: auto;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    min-height: 4rem;
+    padding-block: 0.7rem;
+    padding-inline: var(--pad);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+}
+
+@layer block {
+  .sidemark {
+    position: fixed;
+    left: 14px;
+    top: 50%;
+    transform: rotate(180deg);
+    transform-origin: center;
+    writing-mode: vertical-rl;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    z-index: 5;
+    pointer-events: none;
+  }
+  @media (max-width: 1180px) {
+    .sidemark { display: none; }
+  }
+
+  .mast {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 40;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.4rem 1.15rem;
+    padding-block: 18px 14px;
+    border-block-start: 7px solid var(--ink);
+    border-block-end: 1.5px solid var(--rule-d);
+    background: var(--paper);
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .mast .brand {
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .mast .brand:hover { color: var(--red); }
+  .mast-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem 1.1rem;
+    color: var(--ink-soft);
+  }
+  .mast-nav a {
+    color: inherit;
+    text-decoration: none;
+    border-block-end: 1px solid transparent;
+  }
+  .mast-nav a:hover {
+    color: var(--red);
+    border-block-end-color: var(--red);
+  }
+  .dot { color: var(--red); }
+
+  .hero { padding-block: clamp(1.6rem, 4vw, 3.4rem) clamp(0.4rem, 1.5vw, 1rem); }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--red-d);
+    margin-block-end: 0.85rem;
+  }
+  h1 {
+    font-family: var(--disp);
+    font-weight: 700;
+    font-size: var(--step-h1);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  h1 .core { color: var(--red); }
+
+  .note {
+    margin-block-start: clamp(1.1rem, 2.5vw, 1.8rem);
+    padding-block: 0.85rem;
+    padding-inline: 1rem 1.1rem;
+    border: 1px solid var(--rule);
+    border-inline-start: 4px solid var(--red);
+    background: var(--paper-d);
+    color: var(--ink-2);
+    font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.05rem);
+  }
+
+  .doc { --flow-space: clamp(1.4rem, 3vw, 2.2rem); }
+  .lede-sec { padding-block-end: clamp(1.2rem, 3vw, 2rem); }
+  h2 {
+    font-family: var(--disp);
+    font-weight: 700;
+    font-size: var(--step-h2);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.7rem;
+    padding-block-end: 0.4rem;
+    border-block-end: 7px solid var(--ink);
+  }
+  h2 .num {
+    font-variant-numeric: tabular-nums;
+    color: var(--red);
+  }
+  .sections { min-width: 0; --flow-space: clamp(2.1rem, 4vw, 3.4rem); }
+  .section { --flow-space: 1rem; }
+
+  .points { list-style: none; }
+  .points li {
+    position: relative;
+    padding-inline-start: 1.15rem;
+  }
+  .points li + li { margin-block-start: 0.85em; }
+  .points li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.62em;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: var(--red);
+  }
+  .points a {
+    color: var(--red-d);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+  .points a:hover { text-decoration-thickness: 2px; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.84em;
+    background: var(--paper-d);
+    padding-block: 0.08em;
+    padding-inline: 0.32em;
+  }
+  figure {
+    margin-block: 0.75rem 0.15rem;
+    margin-inline: 0;
+  }
+  figcaption {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    margin-block-end: 0.4rem;
+  }
+  pre {
+    background: var(--paper-d);
+    border-inline-start: 3px solid var(--red);
+    padding-block: 0.85rem;
+    padding-inline: 1rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: clamp(0.78rem, 0.72rem + 0.25vw, 0.92rem);
+    line-height: 1.55;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .toc {
+    border-block-start: 7px solid var(--ink);
+    padding-block-start: 0.75rem;
+  }
+  @container page (min-width: 52rem) {
+    .toc {
+      position: sticky;
+      inset-block-start: var(--header-offset);
+    }
+  }
+  .toc-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-block-end: 0.35rem;
+  }
+  .toc ol { list-style: none; }
+  .toc a {
+    display: flex;
+    gap: 0.65rem;
+    align-items: baseline;
+    padding-block: 0.48rem;
+    border-block-end: 1px solid var(--rule);
+    color: var(--ink-2);
+    text-decoration: none;
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+  .toc a:hover { color: var(--red); }
+  .toc .n {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--red-d);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .reading a {
+    color: var(--red-d);
+    font-family: var(--disp);
+    font-weight: 700;
+    font-size: clamp(1.2rem, 1rem + 0.8vw, 1.55rem);
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    border-block-end: 1.5px solid var(--rule);
+  }
+  .reading a:hover {
+    color: var(--red);
+    border-block-end-color: var(--red);
+  }
+  .reading li::before { inset-block-start: 0.55em; }
+
+  .colophon {
+    margin-block-start: clamp(2.8rem, 6vw, 5rem);
+    padding-block: 26px 60px;
+    border-block-start: 1.5px solid var(--rule-d);
+    font-family: var(--mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .colophon .big {
+    font-family: var(--disp);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+    max-width: 14em;
+    line-height: 1.15;
+    margin-block-end: 0.4rem;
+  }
+  .colophon .big .core { color: var(--red); }
+  .colophon a {
+    color: var(--ink-2);
+    text-decoration: none;
+    border-block-end: 1px solid var(--rule);
+  }
+  .colophon a:hover { color: var(--red); border-block-end-color: var(--red); }
+}
+
+@layer exception {
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .skip-link { transition: none; }
+    .sidemark { transform: rotate(180deg); }
+  }
+  @media (forced-colors: active) {
+    :focus-visible { outline: 2px solid CanvasText; }
+    .points li::before { background: CanvasText; }
+  }
+}
+
+@media print {
+  @page { margin: 16mm; }
+  :root {
+    color-scheme: light;
+    --paper: #fff;
+    --paper-d: #fff;
+    --ink: #111;
+    --ink-2: #111;
+    --ink-soft: #222;
+    --red: #111;
+    --red-d: #111;
+    --rule: #bbb;
+    --rule-d: #111;
+  }
+  body { background: #fff; color: #111; font-size: 11pt; }
+  .sidemark, .skip-link { display: none; }
+  .mast, .toc { position: static; }
+  .with-sidebar { display: block; }
+  .toc { margin-block-end: 1.25rem; }
+  a { text-decoration: underline; }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: var(--mono);
+    font-size: 0.78em;
+    word-break: break-all;
+  }
+  h2, figcaption { break-after: avoid; }
+  li, figure, pre, .note { break-inside: avoid; }
+  pre, .note { border: 1px solid #111; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">ข้ามไปยังเนื้อหา</a>
+<p class="sidemark">tayakorn221 — handbooks — html</p>
+
+<div class="wrap">
+  <header class="mast">
+    <a class="brand" href="../">Handbooks</a>
+    <nav class="mast-nav" aria-label="ไซต์">
+      <a href="../">สารบัญรวม</a>
+      <span class="dot" aria-hidden="true">●</span>
+      <a href="https://github.com/tayakorn221/handbooks" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main id="content" tabindex="-1">
+    <article class="doc flow">
+      <p class="note">🤖 สรุปนี้ทำโดย AI (Korn Bot) จากแหล่งอ้างอิงที่ลิงก์ไว้ในแต่ละข้อ ข้อมูลเมื่อ 25 พ.ย. 2026 ยังไม่ได้ทดลองโค้ดจริงทุกข้อ</p>
+
+      <header class="hero">
+        <p class="eyebrow">Handbooks · HTML / CSS</p>
+        <h1>เทคนิค<br>HTML / <span class="core">CSS</span></h1>
+      </header>
+
+      <section class="lede-sec flow">
+        <h2 id="summary">สรุป</h2>
+        <p>เขียน HTML ให้สื่อความหมายก่อน จัด CSS ให้เป็นระบบ ปล่อยให้เลย์เอาต์ไหลตามเนื้อหา และวางแผนสารบัญกับโหมดพิมพ์ไว้ตั้งแต่แรก</p>
+      </section>
+
+      <div class="shell">
+        <div class="with-sidebar">
+          <aside>
+            <nav class="toc" aria-label="สารบัญ">
+              <p class="toc-kicker" id="toc-label">สารบัญ <span lang="en">Contents</span></p>
+              <ol>
+                <li><a href="#summary"><span class="n">00</span> สรุป</a></li>
+                <li><a href="#semantic"><span class="n">01</span> <span lang="en">Semantic HTML</span></a></li>
+                <li><a href="#a11y"><span class="n">02</span> <span lang="en">Accessibility</span></a></li>
+                <li><a href="#css"><span class="n">03</span> จัดระเบียบ CSS</a></li>
+                <li><a href="#responsive"><span class="n">04</span> <span lang="en">Responsive</span></a></li>
+                <li><a href="#performance"><span class="n">05</span> <span lang="en">Performance</span></a></li>
+                <li><a href="#multi"><span class="n">06</span> เอกสารหลายตอน</a></li>
+                <li><a href="#further"><span class="n">07</span> แหล่งที่น่าศึกษาต่อ</a></li>
+              </ol>
+            </nav>
+          </aside>
+
+          <div class="sections flow">
+            <section class="section flow" id="semantic-sec">
+              <h2 id="semantic"><span class="num">1.</span> <span lang="en">Semantic HTML</span></h2>
+              <ul class="points">
+                <li>ใช้ landmark ได้แก่ <code>header</code>, <code>nav</code>, <code>main</code>, <code>article</code>, <code>section</code>, <code>aside</code>, <code>footer</code> แทนการใช้ div ล้วน (<a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/Structuring_documents" target="_blank" rel="noopener">MDN</a>)</li>
+                <li>มี <code>main</code> แค่หน้าละหนึ่งอัน ใช้ <code>article</code> กับเนื้อหาที่อ่านแยกได้ และใช้ <code>section</code> ที่มีหัวข้อกำกับ</li>
+                <li>หัวข้อต้องเรียงตามลำดับชั้นโดยไม่ข้ามระดับ และไม่ใช้แท็กหัวข้อแค่เพื่อขยายตัวอักษร (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements" target="_blank" rel="noopener">MDN headings</a>)</li>
+              </ul>
+            </section>
+
+            <section class="section flow">
+              <h2 id="a11y"><span class="num">2.</span> <span lang="en">Accessibility</span></h2>
+              <ul class="points">
+                <li>ใส่ skip link เป็นจุดโฟกัสแรกของหน้า (<a href="https://web.dev/learn/accessibility/focus" target="_blank" rel="noopener">web.dev focus</a>)</li>
+                <li>ถ้ามี <code>nav</code> หลายอัน ให้ใส่ <code>aria-label</code> แยกแต่ละอัน (<a href="https://web.dev/articles/website-navigation" target="_blank" rel="noopener">web.dev navigation</a>)</li>
+                <li>ห้ามใช้ <code>tabindex</code> ค่าบวก และห้ามลบ outline โดยไม่มีสไตล์โฟกัสอื่นมาแทน</li>
+                <li>ใช้ ARIA เท่าที่จำเป็น ถ้าแท็ก HTML ทำหน้าที่นั้นได้อยู่แล้วก็ไม่ต้องใช้ (<a href="https://web.dev/learn/accessibility/aria-html" target="_blank" rel="noopener">web.dev ARIA</a>)</li>
+                <li>คอนทราสต์ตัวอักษรอย่างน้อย 4.5:1 และตัวใหญ่อย่างน้อย 3:1 (<a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum" target="_blank" rel="noopener">WCAG 1.4.3</a>)</li>
+                <li>ห่อแอนิเมชันด้วย <code>prefers-reduced-motion</code></li>
+              </ul>
+            </section>
+
+            <section class="section flow">
+              <h2 id="css"><span class="num">3.</span> จัดระเบียบ CSS</h2>
+              <ul class="points">
+                <li><a href="https://bell.bz/cube-css/" target="_blank" rel="noopener">CUBE CSS</a>: ตั้งค่า global ก่อน แล้วค่อยต่อด้วย Composition, Utility, Block, Exception
+                  <figure>
+                    <figcaption>ตัวอย่างเช่น</figcaption>
+                    <pre><code>.flow &gt; * + * { margin-top: var(--flow-space, 1em); }</code></pre>
+                  </figure>
+                </li>
+                <li>ใช้ custom properties เป็น design token</li>
+                <li>ใช้ <code>@layer</code> คุมลำดับความสำคัญของสไตล์ (<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@layer" target="_blank" rel="noopener">MDN @layer</a>)</li>
+                <li>ใช้ logical properties เช่น <code>margin-inline</code> และ <code>padding-block</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Logical_properties_and_values" target="_blank" rel="noopener">MDN</a>)</li>
+              </ul>
+            </section>
+
+            <section class="section flow">
+              <h2 id="responsive"><span class="num">4.</span> <span lang="en">Responsive</span></h2>
+              <ul class="points">
+                <li>Intrinsic layout แบบ <a href="https://every-layout.dev/rudiments/composition/" target="_blank" rel="noopener">Every Layout</a> ประกอบ primitive เล็ก ๆ เข้าด้วยกัน ลดการพึ่ง breakpoint</li>
+                <li>ใช้ <code>clamp()</code> ทำตัวอักษรให้ไหลตามจอ ตามแนวทาง <a href="https://utopia.fyi/blog/clamp/" target="_blank" rel="noopener">Utopia</a> และต้องทดสอบตอนผู้ใช้ซูมด้วย</li>
+                <li>ใช้ <code>@container</code> เมื่อคอมโพเนนต์ต้องเปลี่ยนตามขนาดกล่อง (<a href="https://developer.mozilla.org/en-US/blog/getting-started-with-css-container-queries/" target="_blank" rel="noopener">MDN container queries</a>)</li>
+                <li>Flex สำหรับจัดแกนเดียว Grid สำหรับสองแกน</li>
+              </ul>
+            </section>
+
+            <section class="section flow">
+              <h2 id="performance"><span class="num">5.</span> <span lang="en">Performance</span></h2>
+              <ul class="points">
+                <li>ใส่ critical CSS แบบ inline ใน head (<a href="https://web.dev/learn/performance/optimize-resource-loading" target="_blank" rel="noopener">web.dev</a>)</li>
+                <li>preload เฉพาะฟอนต์ที่ใช้จริง และตั้ง <code>font-display: swap</code> หรือ <code>optional</code> (<a href="https://web.dev/articles/font-best-practices" target="_blank" rel="noopener">web.dev fonts</a>)</li>
+                <li>รูป LCP ห้าม lazy-load และต้องอยู่ใน HTML ตั้งแต่แรก (<a href="https://web.dev/articles/optimize-lcp" target="_blank" rel="noopener">web.dev LCP</a>)</li>
+                <li>รูปที่อยู่ล่างหน้าใส่ <code>loading="lazy"</code> (<a href="https://web.dev/articles/browser-level-image-lazy-loading" target="_blank" rel="noopener">web.dev</a>)</li>
+                <li>ส่วนยาวที่ยังไม่เลื่อนถึงใช้ <code>content-visibility: auto</code> คู่กับ <code>contain-intrinsic-size</code> (<a href="https://web.dev/articles/content-visibility" target="_blank" rel="noopener">web.dev</a>)</li>
+              </ul>
+            </section>
+
+            <section class="section flow">
+              <h2 id="multi"><span class="num">6.</span> เอกสารหลายตอน</h2>
+              <ul class="points">
+                <li>สารบัญใช้ลิงก์ไปที่ <code>id</code> ของแต่ละหัวข้อ (<a href="https://css-tricks.com/a-perfect-table-of-contents-with-html-css/" target="_blank" rel="noopener">CSS-Tricks</a>)</li>
+                <li>ถ้ามีเฮดเดอร์ติดจอ ให้ตั้ง <code>scroll-padding-top</code> กันหัวข้อถูกบัง (<a href="https://css-tricks.com/fixed-headers-on-page-links-and-overlapping-content-oh-my/" target="_blank" rel="noopener">CSS-Tricks</a>)</li>
+                <li>ทำสไตล์สำหรับพิมพ์ด้วย <code>@media print</code> และ <code>@page</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Media_queries/Printing" target="_blank" rel="noopener">MDN printing</a>, <a href="https://css-tricks.com/almanac/rules/p/page/" target="_blank" rel="noopener">CSS-Tricks @page</a>)</li>
+                <li>รูปและกราฟใช้ <code>figure</code> คู่กับ <code>figcaption</code> (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/figure" target="_blank" rel="noopener">MDN</a>)</li>
+                <li>ตารางใส่ <code>caption</code> (<a href="https://heydonworks.com/article/the-caption-element/" target="_blank" rel="noopener">Heydon Pickering</a>)</li>
+              </ul>
+            </section>
+
+            <section class="section flow">
+              <h2 id="further">แหล่งที่น่าศึกษาต่อ</h2>
+              <ul class="points reading">
+                <li><a href="https://every-layout.dev/" target="_blank" rel="noopener">Every Layout</a></li>
+                <li><a href="https://utopia.fyi/" target="_blank" rel="noopener">Utopia</a></li>
+                <li><a href="https://bell.bz/cube-css/" target="_blank" rel="noopener">CUBE CSS</a></li>
+                <li><a href="https://heydonworks.com/" target="_blank" rel="noopener">HeydonWorks</a></li>
+                <li><a href="https://web.dev/learn/accessibility/" target="_blank" rel="noopener">web.dev Learn Accessibility</a></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="colophon cluster">
+    <p class="big">เขียนเพื่อ<span class="core">เข้าใจ</span> ไม่ใช่เพื่อท่องจำ</p>
+    <p>เรียงพิมพ์ด้วย Bai&nbsp;Jamjuree &amp; Anuphan</p>
+    <p><a href="../">กลับสารบัญ</a> · โดย <a href="https://github.com/tayakorn221" target="_blank" rel="noopener">@tayakorn221</a> · 2026</p>
+  </footer>
+</div>
+</body>
+</html>
